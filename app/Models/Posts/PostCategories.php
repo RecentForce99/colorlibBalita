@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PostCategories extends Model
 {
-    public $timestamps=True;
+    public $timestamps = True;
 
-    protected $fillable=[
+    protected $fillable = [
         'id',
         'name',
         'code',
         'priority',
-        'description',
-        'preview_picture',
-        'category_id',
         'created_at',
         'updated_at',
     ];
