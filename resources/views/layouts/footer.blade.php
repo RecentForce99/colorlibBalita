@@ -24,5 +24,6 @@
 
 
 <script src="{{asset('js/main.js')}}"></script>
+<script src="{{asset('js/ajax/feedback.js')}}"></script>
 </body>
 </html>

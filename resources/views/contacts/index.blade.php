@@ -10,19 +10,20 @@
         <div class="row blog-entries">
             <div class="col-md-12 col-lg-8 main-content">
 
-                <form action="#" method="post">
+                <form class="send-feedback-form-ajax">
+                    @csrf
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control ">
+                            <input type="text" name="name" id="name" class="form-control ">
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" id="phone" class="form-control ">
+                            <input type="text" name="phone" id="phone" class="form-control ">
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control ">
+                            <input type="email" name="email" id="email" class="form-control ">
                         </div>
                     </div>
                     <div class="row">

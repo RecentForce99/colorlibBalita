@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Request;
 
-class FeedbackController extends BaseController
+class FeedbackController extends Controller
 {
-    public function sendFeedback()
+    public function sendFeedback(\Illuminate\Support\Facades\Request $request)
     {
-        return ;
-    }
-
-    public function getView()
-    {
-        return view('contacts.index');
+        dd($request);
     }
 }
