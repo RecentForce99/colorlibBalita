@@ -22,6 +22,7 @@ class AllPostsService
                 'post_categories.code as category_code'
             )
             ->get();
+
         $posts->map(
             function ($post) {
                 $post->date = Carbon::parse($post->date)->format('F d, Y');;
