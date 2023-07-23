@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\Posts\PostsParserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PostsParserController extends Controller
 {
@@ -15,6 +16,12 @@ class PostsParserController extends Controller
     public function parseXml(Request $request)
     {
         $postsParserService = new PostsParserService();
-        $postsParserService->parseXml($request->file('FILE')->getRealPath());
+        $status = $postsParserService->parseXml($request->file('FILE')->getRealPath());
+
+        if ($status) {
+            return redirect()->back()->with('status', 'Success');
+        } else {
+            return redirect()->back()->withErrors(['status' => 'Error']);
+        }
     }
 }

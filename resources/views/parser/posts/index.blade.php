@@ -4,6 +4,16 @@
         <div class="row">
             <div class="col-md-12">
                 <h3>Импорт постов через XML</h3>
+                @if (Session::has('status'))
+                    <div class="alert alert-success">
+                        {!! Session::get('status') !!}
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        {!! $errors->first() !!}
+                    </div>
+                @endif
                 <br>
                 <form action="" method="POST" enctype="multipart/form-data">
                     @csrf

@@ -9,7 +9,7 @@
 .phpunit.result.cache
 npm-debug.log
 yarn-error.log
-
+/storage/temp
 /*.rar
 
 /Вёрстка

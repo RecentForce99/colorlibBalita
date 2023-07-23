@@ -61,8 +61,7 @@ class PostsParserService
                 'code' => str_slug($post['Name']),
                 'description' => $post['Description'],
                 'category_id' => $categoryId,
-                //It's not time yet
-//                'preview_picture' => !empty($post['Pict1']) ? $this->savePictureFromSomeSite($post['Pict1']) : null,
+                'preview_picture' => !empty($post['Pict1']) ? $this->getAfterSavingPictureFromSomeSite($post['Pict1']) : null,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
@@ -70,9 +69,9 @@ class PostsParserService
         return $result;
     }
 
-    private function savePictureFromSomeSite($link)
+    private function getAfterSavingPictureFromSomeSite($link)
     {
-        $link = htmlspecialchars($link);
+        $link = filter_var(trim(htmlspecialchars(strip_tags($link))), FILTER_SANITIZE_STRING);
         $extensions = [
             'png',
             'svg',
@@ -81,15 +80,6 @@ class PostsParserService
             'webp',
         ];
 
-        //Checking image access
-        print_r($link);
-        echo '<br';
-        $ch = curl_init($link);
-        curl_setopt($ch,CURLOPT_USERAGENT,$_SERVER['HTTP_USER_AGENT']);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        if (!curl_exec($ch)) {
-            return;
-        }
         $content = file_get_contents($link);
         $pathInfo = pathinfo($link);
         if (empty($pathInfo['extension']) || !in_array($pathInfo['extensions'], $extensions)) {
@@ -100,9 +90,9 @@ class PostsParserService
 
         $fileName = md5($content) . $currentExt;
         Storage::disk('temp')->put($fileName, $content);
-        $currentFile = Storage::putFile('images', new File(storage_path('temp/' . $fileName)));
+        $currentFile = Storage::putFile('public', new File(storage_path('temp/' . $fileName)));
 
-        return '/storage/app/' . $currentFile;
+        return '/storage/' . str_replace('public/', '', $currentFile);
     }
 }
 
