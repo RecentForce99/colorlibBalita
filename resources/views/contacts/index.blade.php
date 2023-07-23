@@ -15,21 +15,21 @@
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="name">Name</label>
-                            <input type="text" name="name" id="name" class="form-control ">
+                            <input type="text" name="name" id="name" class="form-control " required>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" name="phone" id="phone" class="form-control ">
+                            <input type="text" name="phone" id="phone" class="form-control " required>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="email">Email</label>
-                            <input type="email" name="email" id="email" class="form-control ">
+                            <input type="email" name="email" id="email" class="form-control " required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 form-group">
                             <label for="message">Write Message</label>
-                            <textarea name="message" id="message" class="form-control " cols="30" rows="8"></textarea>
+                            <textarea name="message" id="message" class="form-control " cols="30" rows="8" required></textarea>
                         </div>
                     </div>
                     <div class="row">

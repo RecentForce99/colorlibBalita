@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [\App\Http\Controllers\IndexController::class, 'getView']);
 
 Route::get('/posts/{categoryCode}/', [\App\Http\Controllers\PostsListController::class, 'getView']);
 Route::get('/posts/{categoryCode}/{postCode}/', [\App\Http\Controllers\PostsDetailController::class, 'getView'])->name('contacts.feedback');
 
-Route::get('/', [\App\Http\Controllers\IndexController::class, 'getView']);
-
 Route::get('/contacts/', [\App\Http\Controllers\ContactsController::class, 'getView']);
+Route::post('/contacts/feedback/', [\App\Http\Controllers\ContactsController::class, 'sendMail']);
 
