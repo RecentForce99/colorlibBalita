@@ -51,7 +51,7 @@
     </div>
     </section>
 
-    <section class="site-section py-sm">
+    <section class="site-section py-sm" id="posts">
         <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -61,19 +61,19 @@
         <div class="row blog-entries">
             <div class="col-md-12 col-lg-8 main-content">
                 <div class="row">
-                    @foreach($fullListOfPosts as $post)
-                        <div class="col-md-6">
-                        <a href="{{$post->detail_page_url}}" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                            <img src="{{asset($post->preview_picture)}}" alt="Image placeholder">
-                            <div class="blog-content-body">
-                                <div class="post-meta">
-                                    <span class="category" onclick="window.open({{$post->section_page_url}}, '_blank')">{{$post->category_name}}</span>
-                                    <span class="mr-2">{{$post->date}}</span> &bullet;
+                    @foreach($posts as $post)
+                        <diva class="col-md-6">
+                            <a href="{{$post->detail_page_url}}" target="_blank" class="blog-entry element-animate" data-animate-effect="fadeIn">
+                                <img src="{{asset($post->preview_picture)}}" alt="Image placeholder">
+                                <div class="blog-content-body">
+                                    <div class="post-meta">
+                                        <span class="category" onclick="window.open({{$post->section_page_url}}, '_blank')">{{$post->category_name}}</span>
+                                        <span class="mr-2">{{$post->date}}</span>
+                                    </div>
+                                    <h2>{{$post->post_name}}</h2>
                                 </div>
-                                <h2>{{$post->post_name}}</h2>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </diva>
                     @endforeach
                 </div>
 
@@ -81,16 +81,29 @@
                     <div class="col-md-12 text-center">
                         <nav aria-label="Page navigation" class="text-center">
                             <ul class="pagination">
-                                <li class="page-item  active"><a class="page-link" href="#">Prev</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                <li class="page-item{{$previousPageClass}}">
+                                    <a class="page-link" href="{{$previousPageHref}}#posts" >Prev</a>
+                                </li>
+
+                                @for($i = 1; $i <= $lastPage; $i++)
+                                    @if($i > $currentPage - $pageRadius &&
+                                    $i < $currentPage + $pageRadius ||
+                                    ($currentPage == 1 && $i < $pageRadius+2) || //Для вывода третьей кнопки на первой странице
+                                    ($currentPage == $lastPage && $i >= $currentPage - $pageRadius) //Для вывода третьей кнопки на последней странице
+                                    )
+                                        <li class="page-item{{$currentPage == $i ? " active" : ""}}">
+                                            <a class="page-link"@if($currentPage != $i) href="?pageId={{$i}}#posts"@endif>{{$i}}</a>
+                                        </li>
+                                    @endif
+                                @endfor
+
+                                <li class="page-item{{$nextPageClass}}">
+                                    <a class="page-link" href="{{$nextPageHref}}#posts">Next</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
                 </div>
-
             </div>
 
             <!-- END main-content -->
@@ -170,11 +183,9 @@
                 <div class="sidebar-box">
                     <h3 class="heading">Categories</h3>
                     <ul class="categories">
-                        <li><a href="#">Courses <span>(12)</span></a></li>
-                        <li><a href="#">News <span>(22)</span></a></li>
-                        <li><a href="#">Design <span>(37)</span></a></li>
-                        <li><a href="#">HTML <span>(42)</span></a></li>
-                        <li><a href="#">Web Development <span>(14)</span></a></li>
+                        @foreach($categoriesList as $category)
+                            <li><a href="{{$category->section_page_url}}">{{$category->category_name}}<span>({{$category->posts_count}})</span></a></li>
+                        @endforeach
                     </ul>
                 </div>
                 <!-- END sidebar-box -->
