@@ -67,7 +67,7 @@ class PostCategoriesService
             return;
         }
 
-        $category->section_page_url = UrlHelper::getPostsSectionPageUrl($category->category_code);
+        $category->section_page_url = UrlHelper::getPostsSectionPageUrl($category->code);
 
         return $category;
     }

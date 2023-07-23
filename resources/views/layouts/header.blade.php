@@ -71,7 +71,7 @@
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">About</a>
+                        <a class="nav-link" href="/parse/posts/">Parser</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contacts/">Contact</a>

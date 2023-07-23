@@ -19,9 +19,9 @@ class PostsParserController extends Controller
         $status = $postsParserService->parseXml($request->file('FILE')->getRealPath());
 
         if ($status) {
-            return redirect()->back()->with('status', 'Success');
+            return back()->with('status', 'Success');
         } else {
-            return redirect()->back()->withErrors(['status' => 'Error']);
+            return back()->withErrors(['status' => 'Error']);
         }
     }
 }
