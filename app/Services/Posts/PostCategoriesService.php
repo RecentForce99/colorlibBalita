@@ -25,7 +25,7 @@ class PostCategoriesService
         ->join('post_categories', 'posts.category_id', '=', 'post_categories.id')
         ->orderByDesc('posts.priority')
         ->where('post_categories.code', '=', $categoryCode)
-        ->paginate(8, '*', 'pageId', $pageId);
+        ->paginate(9, '*', 'pageId', $pageId);
 
         $posts->filter(
             function ($post) {
