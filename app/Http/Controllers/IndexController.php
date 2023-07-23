@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Posts\Posts;
 use App\Services\Posts\AllPostsService;
 use App\Services\Posts\PostCategoriesService;
 use Illuminate\Http\Request;
@@ -19,15 +18,6 @@ class IndexController extends Controller
         return view('main.index', [
             'posts' => $posts,
             'categoriesList' => $categoriesService->getTopFiveCategories(),
-
-            //Pagination
-            'currentPage' => $posts->currentPage(),
-            'lastPage' => $posts->lastPage(),
-            'pageRadius' => $posts->pageRadius,
-            'previousPageClass' => $posts->previousPageClass,
-            'nextPageClass' => $posts->nextPageClass,
-            'previousPageHref' => $posts->previousPageHref,
-            'nextPageHref' => $posts->nextPageHref,
         ]);
     }
 

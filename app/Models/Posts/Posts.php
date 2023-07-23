@@ -9,7 +9,7 @@ use function Symfony\Component\ErrorHandler\ErrorRenderer\formatArgs;
 
 class Posts extends Model
 {
-    public $timestamps=True;
+    public $timestamps = true;
 
     protected $fillable = [
         'id',

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PostCategories extends Model
 {
-    public $timestamps = True;
+    public $timestamps = true;
 
     protected $fillable = [
         'id',

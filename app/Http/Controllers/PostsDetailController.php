@@ -24,6 +24,7 @@ class PostsDetailController extends Controller
             'post' => $postInfo,
             'categoriesList' => $postCategoriesService->getTopFiveCategories(),
             'categoryInfo' => $categoryInfo,
+            'relatedPosts' => $postDetailService->getRelatedPosts($categoryCode, $postCode),
         ]);
     }
 }

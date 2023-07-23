@@ -26,7 +26,7 @@
                         @endforeach
                     </div>
                 </div>
-                @include('layouts.posts.pagination')
+                {{$posts->links('layouts.posts.pagination', ['pageRadius' => 2])}}
             </div>
 
             <!-- END main-content -->

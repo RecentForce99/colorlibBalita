@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Posts\Posts;
 use App\Services\Posts\PostCategoriesService;
 use Illuminate\Http\Request;
 
@@ -19,21 +18,12 @@ class PostsListController extends Controller
             abort(404);
         }
 
-        $posts = $postCategoriesService->getPostsByCategoryCode($categoryInfo->id, $currentPageId);
+        $posts = $postCategoriesService->getPostsWithPaginationByCategoryCode($categoryCode, $currentPageId);
 
         return view('posts.list', [
             'posts' => $posts,
             'categoryName' => $categoryInfo->name,
             'categoriesList' => $postCategoriesService->getTopFiveCategories(),
-
-            //Pagination
-            'currentPage' => $posts->currentPage(),
-            'lastPage' => $posts->lastPage(),
-            'pageRadius' => $posts->pageRadius,
-            'previousPageClass' => $posts->previousPageClass,
-            'nextPageClass' => $posts->nextPageClass,
-            'previousPageHref' => $posts->previousPageHref,
-            'nextPageHref' => $posts->nextPageHref,
         ]);
     }
 }
