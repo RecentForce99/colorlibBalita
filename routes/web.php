@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/posts/{category}/', [\App\Http\Controllers\PostsListController::class, 'getView'])->name('contacts.feedback');
-//Route::get('/posts/{category}/{code}/', [\App\Http\Controllers\PostsDetailController::class, 'getView'])->name('contacts.feedback');
+Route::get('/posts/{categoryCode}/', [\App\Http\Controllers\PostsListController::class, 'getView']);
+Route::get('/posts/{categoryCode}/{postCode}/', [\App\Http\Controllers\PostsDetailController::class, 'getView'])->name('contacts.feedback');
 
-Route::get('/', [\App\Http\Controllers\IndexController::class, 'getView'])->name('index');
+Route::get('/', [\App\Http\Controllers\IndexController::class, 'getView']);
 
-Route::post('/feedback/', [\App\Http\Controllers\FeedbackController::class, 'sendFeedback'])->name('contacts.feedback');
+Route::post('/feedback/', [\App\Http\Controllers\FeedbackController::class, 'sendFeedback']);
 Route::get('/contacts/', function () {
     return view('contacts.index');
 });

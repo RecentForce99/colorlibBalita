@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts\Posts;
 use App\Services\Posts\AllPostsService;
-use App\Services\Posts\CategoriesService;
+use App\Services\Posts\PostCategoriesService;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -14,11 +14,11 @@ class IndexController extends Controller
         $currentPageId = $request->get('pageId');
         $posts = $this->getPostListWithPagination($currentPageId);
 
-        $categoriesService = new CategoriesService();
+        $categoriesService = new PostCategoriesService();
 
         return view('main.index', [
             'posts' => $posts,
-            'categoriesList' => $categoriesService->getRandomFiveCategories(),
+            'categoriesList' => $categoriesService->getTopFiveCategories(),
 
             //Pagination
             'currentPage' => $posts->currentPage(),

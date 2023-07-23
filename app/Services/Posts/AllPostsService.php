@@ -3,6 +3,7 @@
 
 namespace App\Services\Posts;
 
+use App\Helpers\UrlHelper;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -22,13 +23,13 @@ class AllPostsService
                 'post_categories.code as category_code'
             )
             ->orderByDesc('posts.priority')
-            ->paginate('8', '*', 'page', $pageId);
+            ->paginate(8, '*', 'pageId', $pageId);
 
         $posts->filter(
             function ($post) {
-                $post->date = Carbon::parse($post->date)->format('F d, Y');;
-                $post->section_page_url = "/posts/{$post->category_code}/";
-                $post->detail_page_url = "/posts/{$post->category_code}/{$post->post_code}/";
+                $post->date = Carbon::parse($post->date)->format('F d, Y');
+                $post->section_page_url = UrlHelper::getPostsSectionPageUrl($post->category_code);
+                $post->detail_page_url = UrlHelper::getPostsDetailPageUrl($post->category_code, $post->post_code);
             }
         );
 
