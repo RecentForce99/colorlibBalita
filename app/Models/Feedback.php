@@ -9,8 +9,16 @@ class Feedback extends Model
 {
     use HasFactory;
 
-    public function addFeedbackToTable()
-    {
+    public $timestamps = true;
 
-    }
+    protected $fillable = [
+        'id',
+        'name',
+        'phone',
+        'email',
+        'message',
+        'status',
+        'created_at',
+        'updated_at',
+    ];
 }

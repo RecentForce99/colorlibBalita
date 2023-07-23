@@ -8,10 +8,12 @@ $(document).on('submit', '.send-feedback-form-ajax', function (e) {
         dataType: "html",
         data: $(this).serialize(),
         success: function (response) {
-            if (response == 1) {
-                alert('Here could be a modal window, but it was not made up. Regardless, thanks')
+            if (response == true) {
+                alert('Here could be a modal window, but it was not made up. Regardless, thanks');
+            } else if (response == false) {
+                alert('Mail cannot be send');
             } else {
-                alert('Mail cannot be send')
+                alert(response);
             }
         }
     })

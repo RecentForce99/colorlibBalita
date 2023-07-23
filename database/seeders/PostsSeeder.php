@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Posts\Posts;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -218,8 +219,8 @@ class PostsSeeder extends Seeder
         ];
         for ($i = 0; $i < 50; $i++) {
             $randNum = rand(0, 7);
-            $posts[$randNum]['code'] .= $i;
-            DB::table('posts')->insert($posts[$randNum]);
+            $posts[$randNum]['code'] .= substr(md5($i), 0, 2);
+            Posts::insert($posts[$randNum]);
         }
     }
 }

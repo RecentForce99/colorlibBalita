@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('code')->nullable(false)->unique();
             $table->smallInteger('priority')->default(500);
             $table->text('description')->nullable(false);
-            $table->string('preview_picture')->nullable(false);
+            $table->string('preview_picture')->nullable();
             $table->integer('category_id')->nullable(false);
             $table->timestamp('date')->nullable();
             $table->timestamps();

@@ -20,3 +20,6 @@ Route::get('/posts/{categoryCode}/{postCode}/', [\App\Http\Controllers\PostsDeta
 Route::get('/contacts/', [\App\Http\Controllers\ContactsController::class, 'getView']);
 Route::post('/contacts/feedback/', [\App\Http\Controllers\ContactsController::class, 'sendMail']);
 
+//Must be closed by admin role, but we don't have it
+Route::get('/parse/posts/', [\App\Http\Controllers\PostsParserController::class, 'getView']);
+Route::post('/parse/posts/', [\App\Http\Controllers\PostsParserController::class, 'parseXml']);

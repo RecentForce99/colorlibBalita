@@ -7,17 +7,18 @@ use App\Models\Feedback;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class ContactsFeedbackService
 {
-    public function sendMail(Request $request): bool
+    public function sendMail($request): bool
     {
         $status = true;
         $data = [
-            'name' => $request->get('name'),
-            'phone' => $request->get('phone'),
-            'email' => $request->get('email'),
-            'justMessage' => $request->get('message'),
+            'name' => $request['name'],
+            'phone' => $request['phone'],
+            'email' => $request['email'],
+            'justMessage' => $request['message'],
         ];
 
         try {
@@ -35,17 +36,30 @@ class ContactsFeedbackService
         return $status;
     }
 
-    public function addFeedbackFormDataToTable(Request $request, $status): void
+    public function insertFeedbackFormDataToTable($request, $status): void
     {
         $currentDate = Carbon::now();
         Feedback::insert([
-           'name' => $request->get('name'),
-           'phone' => $request->get('phone'),
-           'email' => $request->get('email'),
-           'message' => $request->get('message'),
+           'name' => $request['name'],
+           'phone' => $request['phone'],
+           'email' => $request['email'],
+           'message' => $request['message'],
            'status' => $status,
            'created_at' => $currentDate,
            'updated_at' => $currentDate,
+        ]);
+    }
+
+    public function validateRequest(Request $request)
+    {
+        return Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'phone' => 'required|max:13',
+            'email' => 'required|max:255' ,
+            'message' => 'required',
+        ], [
+            'required' => 'The :attribute field is required.',
+            'max' => 'The :attribute max size is 255 symbols',
         ]);
     }
 }
