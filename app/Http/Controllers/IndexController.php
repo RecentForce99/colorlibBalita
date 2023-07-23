@@ -15,7 +15,7 @@ class IndexController extends Controller
 
         $categoriesService = new PostCategoriesService();
 
-        return view('main.index', [
+        return view('index.index', [
             'posts' => $posts,
             'categoriesList' => $categoriesService->getTopFiveCategories(),
         ]);

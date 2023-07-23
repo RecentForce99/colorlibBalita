@@ -18,7 +18,5 @@ Route::get('/posts/{categoryCode}/{postCode}/', [\App\Http\Controllers\PostsDeta
 
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'getView']);
 
-Route::post('/feedback/', [\App\Http\Controllers\FeedbackController::class, 'sendFeedback']);
-Route::get('/contacts/', function () {
-    return view('contacts.index');
-});
+Route::get('/contacts/', [\App\Http\Controllers\ContactsController::class, 'getView']);
+

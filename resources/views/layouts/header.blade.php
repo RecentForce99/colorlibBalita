@@ -44,7 +44,7 @@
         <div class="row pt-5">
             <div class="col-12 text-center">
                 <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" href="#navbarMenu" role="button" aria-expanded="false" aria-controls="navbarMenu"><span class="burger-lines"></span></a>
-                <h1><a href="index.html">Balita</a></h1>
+                <h1><a href="/">Balita</a></h1>
             </div>
         </div>
     </div>
@@ -71,10 +71,10 @@
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="/contacts/">Contact</a>
                     </li>
                 </ul>
 
