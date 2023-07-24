@@ -27,28 +27,30 @@
         </div>
     </div>
     </section>
-    <section class="py-5">
-        <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="mb-3 ">Related Post</h2>
+    @empty($relatedPosts)
+        <section class="py-5">
+            <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mb-3 ">Related Post</h2>
+                </div>
+            </div>
+            <div class="row">
+                @foreach($relatedPosts as $post)
+                    <div class="col-md-6 col-lg-4">
+                        <a href="{{$post->detail_page_url}}" class="a-block d-flex align-items-center height-md" style="background-image: url({{asset($post->preview_picture)}}); ">
+                            <div class="text">
+                                <div class="post-meta">
+                                    <span class="category" onclick="window.open({{$post->section_page_url}}, '_blank')">{{$post->category_name}}</span>
+                                    <span class="mr-2">{{$post->date}}</span>
+                                </div>
+                                <h3>{{$post->post_name}}</h3>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
-        <div class="row">
-            @foreach($relatedPosts as $post)
-                <div class="col-md-6 col-lg-4">
-                    <a href="{{$post->detail_page_url}}" class="a-block d-flex align-items-center height-md" style="background-image: url({{asset($post->preview_picture)}}); ">
-                        <div class="text">
-                            <div class="post-meta">
-                                <span class="category" onclick="window.open({{$post->section_page_url}}, '_blank')">{{$post->category_name}}</span>
-                                <span class="mr-2">{{$post->date}}</span>
-                            </div>
-                            <h3>{{$post->post_name}}</h3>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
-        </div>
-    </div>
-    </section>
+        </section>
+    @endempty
 @include('layouts.footer')

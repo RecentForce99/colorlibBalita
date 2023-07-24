@@ -71,4 +71,9 @@ class PostCategoriesService
 
         return $category;
     }
+
+    public function checkExistsPostsInThisCategory($categoryId): bool
+    {
+        return Posts::where('category_id', $categoryId)->exists();
+    }
 }

@@ -14,7 +14,7 @@ class PostsListController extends Controller
         $postCategoriesService = new PostCategoriesService();
         $categoryInfo = $postCategoriesService->getCategoryInfoByCode($categoryCode);
 
-        if (empty($categoryInfo)) {
+        if (empty($categoryInfo->id) || !$postCategoriesService->checkExistsPostsInThisCategory($categoryInfo->id)) {
             abort(404);
         }
 

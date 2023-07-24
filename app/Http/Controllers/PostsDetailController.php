@@ -16,7 +16,7 @@ class PostsDetailController extends Controller
         $categoryInfo = $postCategoriesService->getCategoryInfoByCode($categoryCode);
         $postInfo = $postDetailService->getPostInfoByCode($postCode);
 
-        if (empty($categoryInfo) || empty($postInfo)) {
+        if (empty($categoryInfo->id) || empty($postInfo) || ($categoryInfo->id != $postInfo->category_id)) {
             abort(404);
         }
 

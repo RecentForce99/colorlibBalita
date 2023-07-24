@@ -21,7 +21,7 @@ class PostDetailService
         return $post;
     }
 
-    public function getRelatedPosts(string $categoryCode, string $currentPostCode)
+    public function getRelatedPosts(string $categoryCode, string $currentPostCode): \Illuminate\Support\Collection
     {
         $posts = Posts::select(
             'posts.name as post_name',
