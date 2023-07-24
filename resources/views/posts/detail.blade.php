@@ -27,7 +27,7 @@
         </div>
     </div>
     </section>
-    @empty($relatedPosts)
+    @if($relatedPosts->isNotEmpty())
         <section class="py-5">
             <div class="container">
             <div class="row">
@@ -52,5 +52,5 @@
             </div>
         </div>
         </section>
-    @endempty
+    @endif
 @include('layouts.footer')
