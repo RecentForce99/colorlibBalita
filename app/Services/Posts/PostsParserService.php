@@ -69,7 +69,7 @@ class PostsParserService
         return $result;
     }
 
-    private function getAfterSavingPictureFromSomeSite($link)
+    private function getAfterSavingPictureFromSomeSite(string $link)
     {
         $link = filter_var(trim(htmlspecialchars(strip_tags($link))), FILTER_SANITIZE_STRING);
         $extensions = [
